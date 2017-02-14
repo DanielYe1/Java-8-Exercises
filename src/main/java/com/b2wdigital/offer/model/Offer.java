@@ -65,6 +65,10 @@ public class Offer {
         return "Offer [price=" + price + ", seller=" + seller + ", sku=" + sku + ", quantity=" + quantity + ", id=" + getId() + "]";
     }
 
+    public String idPriceString(){
+        return String.format("id=%s price=%s\n",getId(),price);
+    }
+
     public String getId() {
         return seller + "-" + sku;
     }

@@ -19,4 +19,10 @@ public class OfferTest {
         assertThat(p1.getId(), equalTo("1-sku1"));
     }
 
+    @Test
+    public void deveria_retornar_string_com_preco_e_id(){
+        Offer p1 = new Offer(1, "1", "sku1", 1);
+        assertThat(p1.idPriceString(), equalTo("id=1-sku1 price=1.0\n"));
+    }
+
 }

@@ -34,7 +34,19 @@ public class Basket {
     }
 
 
-    public void remove(Offer oferta) {
-        offers.remove(oferta);
+    public void removeById(String idRemoved) {
+        for (int i = 0; i < offers.size(); i++) {
+            if (offers.get(i).getId().equals(idRemoved)) {
+                offers.remove(offers.get(i));
+            }
+        }
+    }
+
+    public double getTotalValue() {
+        double total = 0;
+        for (Offer offer : offers) {
+            total += offer.getPrice();
+        }
+        return total;
     }
 }

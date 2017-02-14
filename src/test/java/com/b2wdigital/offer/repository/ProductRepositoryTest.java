@@ -27,5 +27,11 @@ public class ProductRepositoryTest {
         assertThat(repository.findProduct("3").map(Product::getId).orElse(""), equalTo(""));
     }
 
+    @Test
+    public void deveria_retornar_string_com_todos_produtos_do_repositorio() {
+        ProductRepository repository = new ProductRepository();
+        assertThat(repository.toString(),equalTo("Produtos disponiveis:\nid=1\nid=2\n"));
+    }
+
 
 }
