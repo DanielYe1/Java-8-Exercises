@@ -4,6 +4,7 @@ import com.b2wdigital.offer.model.Basket;
 import com.b2wdigital.offer.model.Product;
 import com.b2wdigital.offer.repository.ProductRepository;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class BasketApplication {
@@ -22,13 +23,10 @@ public class BasketApplication {
                     System.out.println("Digite o id do produto:");
                     String idProduct = scanner.next();
                     System.out.println("Escolha id da oferta:");
-                    // repository.findProduct(idProduct).map(Product::getOffers).ifPresent(System.out::println);
-                    repository.findProduct(idProduct).ifPresent(Product::showOffers);
+                    Optional<Product> actual = repository.findProduct(idProduct);
+                    actual.ifPresent(Product::showOffers);
                     String idOffer = scanner.next();
-                    repository.findProduct(idProduct).map(Product::getOffers).ifPresent(l -> {
-                        l.stream().filter(s -> s.getId().equals(idOffer)).findAny().ifPresent(basket::add);
-                    });
-
+                    actual.ifPresent(prod -> prod.getOfferById(idOffer).ifPresent(basket::add));
                     break;
                 case 2:
                     System.out.println("Este é seu carrinho:");
@@ -56,6 +54,7 @@ public class BasketApplication {
     }
 
     private static void printMenu() {
+        System.out.println("\n<---- MENU ---->");
         System.out.println("1 - Adicionar oferta");
         System.out.println("2 - Remover oferta");
         System.out.println("3 - Fechar compra");

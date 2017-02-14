@@ -1,7 +1,6 @@
 package com.b2wdigital.offer.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +25,11 @@ public class Basket {
         if (oferta == null) {
             throw new IllegalArgumentException("Oferta nula não pode ser adicionada no carrinho");
         }
-        offers.add(oferta);
+        if (offers.add(oferta)) {
+            System.out.println("Adicionado ao seu carrinho!");
+        } else {
+            System.out.println("Nao foi adicionado, id inexistente!");
+        }
     }
 
     public List<Offer> getOffers() {
@@ -35,18 +38,21 @@ public class Basket {
 
 
     public void removeById(String idRemoved) {
+        boolean removed = false;
         for (int i = 0; i < offers.size(); i++) {
             if (offers.get(i).getId().equals(idRemoved)) {
                 offers.remove(offers.get(i));
+                removed = true;
             }
+        }
+        if (removed) {
+            System.out.println("Removido com sucesso!");
+        } else {
+            System.out.println("Id nao encontrado no carrinho");
         }
     }
 
     public double getTotalValue() {
-        double total = 0;
-        for (Offer offer : offers) {
-            total += offer.getPrice();
-        }
-        return total;
+        return offers.stream().map(Offer::getPrice).reduce(0.0, Double::sum);
     }
 }
