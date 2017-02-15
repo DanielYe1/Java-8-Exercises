@@ -5,6 +5,7 @@ import com.b2wdigital.offer.model.Product;
 import com.b2wdigital.offer.repository.ProductRepository;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BasketController {
@@ -16,7 +17,7 @@ public class BasketController {
     }
 
     public List<Offer> getOffersByProductId(String productId) {
-        return repository.findProduct(productId).map(Product::getOffers).orElse(Arrays.asList());
+        return repository.findProduct(productId).map(Product::getOffers).orElse(Collections.emptyList());
     }
 
 }

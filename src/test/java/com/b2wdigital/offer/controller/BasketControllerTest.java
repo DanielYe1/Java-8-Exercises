@@ -51,9 +51,23 @@ public class BasketControllerTest {
         String productId = "3";
         Offer offer = mock(Offer.class);
         when(repository.findProduct(eq(productId))).thenReturn(Optional.empty());
-        List <Offer> offers = controller.getOffersByProductId(productId);
+        List<Offer> offers = controller.getOffersByProductId(productId);
 
         assertThat(offers, empty());
     }
 
+    @Test
+    public void deveria_retornar_lista_vazia_com_id_para_produto_com_oferta_vazia() {
+        String productId = "4";
+        Product product = mock(Product.class);
+        Offer offer = mock(Offer.class);
+
+        // duvida: criar um when() faz eu especificar um caso no qual a minha classe acusa erro
+        // por causa de ainda não ter implementado como proceder?
+        when(repository.findProduct(eq(productId))).thenReturn(Optional.of(product));
+        when(product.getOffers()).thenReturn(Collections.emptyList());
+
+
+        assertThat(controller.getOffersByProductId(productId), empty());
+    }
 }
