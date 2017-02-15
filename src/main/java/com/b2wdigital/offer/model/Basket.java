@@ -21,11 +21,11 @@ public class Basket {
         return offerString.toString();
     }
 
-    public void add(Offer oferta) {
+    public boolean add(Offer oferta) {
         if (oferta == null) {
             throw new IllegalArgumentException("Oferta nula não pode ser adicionada no carrinho");
         }
-        offers.add(oferta);
+        return offers.add(oferta);
     }
 
     public List<Offer> getOffers() {

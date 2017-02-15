@@ -1,8 +1,11 @@
 package com.b2wdigital.offer;
 
+import com.b2wdigital.offer.controller.BasketController;
 import com.b2wdigital.offer.model.Basket;
+import com.b2wdigital.offer.model.Offer;
 import com.b2wdigital.offer.model.Product;
 import com.b2wdigital.offer.repository.ProductRepository;
+import com.b2wdigital.offer.service.Messenger;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -14,25 +17,26 @@ public class BasketApplication {
 
         printMenu();
         int menu = scanner.nextInt();
-        ProductRepository repository = new ProductRepository();
-        Basket basket = new Basket();
+        BasketController controller = new BasketController(new ProductRepository(), new Basket());
+        Messenger messenger = new Messenger();
         while (menu != 5) {
             switch (menu) {
-                case 1:
-                    System.out.println(repository.toString());
-                    System.out.println("Digite o id do produto:");
-                    String idProduct = scanner.next();
-                    System.out.println("Escolha id da oferta:");
-                    Optional<Product> actual = repository.findProduct(idProduct);
-                    actual.ifPresent(Product::showOffers);
+/*                case 1:
+                    String productId = messenger.ask("Digite o produto:");
+                    messenger.send("ofertas do produto");
+                    String offerId = messenger.ask("Escolha a oferta:");
+
+                    System.out.println(controller.getOffersByProductId(productId));
                     String idOffer = scanner.next();
-                    actual.ifPresent(prod -> prod.getOfferById(idOffer).ifPresent(basket::add));
-                    break;
-                case 2:
+
+                    controller.addOfferById(productId, idOffer);
+                    break;*/
+/*                case 2:
                     System.out.println("Este é seu carrinho:");
                     System.out.println(basket.toString());
                     System.out.println("Digite o id do item a ser removido:");
                     String idRemove = scanner.next();
+                    // controller
                     basket.removeById(idRemove);
                     System.out.println("Carrinho atual:");
                     System.out.println(basket.toString());
@@ -44,7 +48,7 @@ public class BasketApplication {
                     break;
                 case 4:
                     System.out.println(basket.toString());
-                    break;
+                    break;*/
 
             }
 
