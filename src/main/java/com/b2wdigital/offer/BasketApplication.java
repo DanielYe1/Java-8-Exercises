@@ -14,56 +14,54 @@ public class BasketApplication {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        printMenu();
-        int menu = scanner.nextInt();
         BasketController controller = new BasketController(new ProductRepository(), new Basket());
-        Messenger messenger = new Messenger();
+        Messenger messenger = new Messenger(new Scanner(System.in));
+
+        printMenu(messenger);
+        int menu = scanner.nextInt();
         while (menu != 5) {
             switch (menu) {
-/*                case 1:
-                    String productId = messenger.ask("Digite o produto:");
-                    messenger.send("ofertas do produto");
-                    String offerId = messenger.ask("Escolha a oferta:");
+                case 1:
+                    messenger.sendString(controller.getRepositoryProductsToString());
+                    String productId = messenger.askString("Digite o produto:");
+                    messenger.sendString("Ofertas do produto:");
+                    messenger.sendToString(controller.getOffersByProductId(productId));
+                    String offerId = messenger.askString("Escolha a oferta:");
 
-                    System.out.println(controller.getOffersByProductId(productId));
-                    String idOffer = scanner.next();
-
-                    controller.addOfferById(productId, idOffer);
-                    break;*/
-/*                case 2:
-                    System.out.println("Este é seu carrinho:");
-                    System.out.println(basket.toString());
-                    System.out.println("Digite o id do item a ser removido:");
-                    String idRemove = scanner.next();
+                    controller.addOfferById(productId, offerId);
+                    break;
+                case 2:
+                    messenger.sendString("Este é seu carrinho:");
+                    messenger.sendString(controller.basketToString());
+                    String idRemove = messenger.askString("Digite o id do item a ser removido:");
                     // controller
-                    basket.removeById(idRemove);
-                    System.out.println("Carrinho atual:");
-                    System.out.println(basket.toString());
+                    controller.removeOfferById(idRemove);
+                    messenger.sendString("Carrinho atual:");
+                    messenger.sendString(controller.basketToString());
                     break;
                 case 3:
-                    System.out.println("Fechar compra selecionado");
-                    System.out.println("Total do seu carrinho é:");
-                    System.out.println(basket.getTotalValue());
+                    messenger.sendString("Fechar compra selecionado");
+                    messenger.sendString("Total do seu carrinho é:");
+                    messenger.sendToString(controller.getBasketTotalValue());
                     break;
                 case 4:
-                    System.out.println(basket.toString());
-                    break;*/
+                    messenger.sendString(controller.basketToString());
+                    break;
 
             }
 
-            printMenu();
+            printMenu(messenger);
             menu = scanner.nextInt();
         }
     }
 
-    private static void printMenu() {
-        System.out.println("\n<---- MENU ---->");
-        System.out.println("1 - Adicionar oferta");
-        System.out.println("2 - Remover oferta");
-        System.out.println("3 - Fechar compra");
-        System.out.println("4 - Ver carrinho");
-        System.out.println("5 - Sair");
-        System.out.println("Digite a opcao desejada:");
+    private static void printMenu(Messenger messenger) {
+        messenger.sendString("\n<---- MENU ---->");
+        messenger.sendString("1 - Adicionar oferta");
+        messenger.sendString("2 - Remover oferta");
+        messenger.sendString("3 - Fechar compra");
+        messenger.sendString("4 - Ver carrinho");
+        messenger.sendString("5 - Sair");
+        messenger.sendString("Digite a opcao desejada:");
     }
 }

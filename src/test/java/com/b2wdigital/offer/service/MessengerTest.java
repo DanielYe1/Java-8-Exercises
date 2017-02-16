@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -33,6 +34,5 @@ public class MessengerTest {
         String mensagem = "hi";
         assertThat(messenger.askString(mensagem), equalTo("word"));
     }
-
 
 }

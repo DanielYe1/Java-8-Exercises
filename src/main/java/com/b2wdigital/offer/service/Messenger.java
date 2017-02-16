@@ -1,5 +1,8 @@
 package com.b2wdigital.offer.service;
 
+import com.b2wdigital.offer.model.Product;
+
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,4 +20,13 @@ public class Messenger {
         System.out.println(mensagem);
         return scanner.nextLine();
     }
+
+    public void sendToString(Object object) {
+        System.out.println(object.toString());
+    }
+
+    public void sendString(String string) {
+        System.out.println(string);
+    }
+
 }

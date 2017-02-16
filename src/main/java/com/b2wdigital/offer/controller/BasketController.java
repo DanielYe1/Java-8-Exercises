@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class BasketController {
 
@@ -34,5 +35,22 @@ public class BasketController {
 
     public List<Offer> getBasketOffers() {
         return basket.getOffers();
+    }
+
+    public String basketToString() {
+        return basket.toString();
+    }
+
+
+    public double getBasketTotalValue() {
+        return basket.getTotalValue();
+    }
+
+    public void removeOfferById(String offerId) {
+        basket.removeById(offerId);
+    }
+
+    public String getRepositoryProductsToString() {
+        return repository.toString();
     }
 }

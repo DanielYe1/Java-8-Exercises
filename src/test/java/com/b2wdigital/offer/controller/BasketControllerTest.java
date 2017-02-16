@@ -117,4 +117,30 @@ public class BasketControllerTest {
 
         assertThat(controller.addOfferById(productId, offerId), equalTo(false));
     }
+
+    @Test
+    public void deveria_retornar_toString_da_basket_do_controller() {
+        when(basket.toString()).thenReturn("id=1 price=5.5\n");
+        assertThat(controller.basketToString(), equalTo(basket.toString()));
+    }
+
+    @Test
+    public void deveria_retornar_valor_total_da_basket_do_controller() {
+        when(basket.getTotalValue()).thenReturn(50.5);
+        assertThat(controller.getBasketTotalValue(), equalTo(basket.getTotalValue()));
+    }
+
+    @Test
+    public void deveria_remover_oferta_da_basket_do_controller() {
+        controller.removeOfferById("seller1-sku1");
+
+        verify(basket).removeById("seller1-sku1");
+    }
+
+    @Test
+    public void deveria_retornar_string_com_produtos_do_repository() {
+        when(repository.toString()).thenReturn("");
+        assertThat(controller.getRepositoryProductsToString(),equalTo(repository.toString()));
+    }
+
 }
