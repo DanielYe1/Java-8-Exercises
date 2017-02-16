@@ -10,23 +10,20 @@ import java.util.Scanner;
  */
 public class Messenger {
 
-    Scanner scanner;
+    private Sender sender;
+    private Receiver receiver;
 
-    public Messenger(Scanner scanner) {
-        this.scanner = scanner;
+    public Messenger(Sender sender, Receiver receiver) {
+        this.sender = sender;
+        this.receiver = receiver;
     }
 
-    public String askString(String mensagem) {
-        System.out.println(mensagem);
-        return scanner.nextLine();
+    public String ask(String message) {
+        sender.send(message);
+        return receiver.receive();
     }
 
-    public void sendToString(Object object) {
-        System.out.println(object.toString());
+    public void send(String message) {
+        sender.send(message);
     }
-
-    public void sendString(String string) {
-        System.out.println(string);
-    }
-
 }

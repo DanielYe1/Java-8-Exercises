@@ -4,6 +4,7 @@ import com.b2wdigital.offer.model.Basket;
 import com.b2wdigital.offer.model.Offer;
 import com.b2wdigital.offer.model.Product;
 import com.b2wdigital.offer.repository.ProductRepository;
+import com.b2wdigital.offer.service.Messenger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -28,6 +29,8 @@ public class BasketControllerTest {
     private ProductRepository repository;
     @Mock
     private Basket basket;
+    @Mock
+    private Messenger messenger;
     @InjectMocks
     private BasketController controller;
 
@@ -73,25 +76,27 @@ public class BasketControllerTest {
 
     @Test
     public void deveria_retornar_offers_da_basket() {
-        Basket basket = new Basket();
-        BasketController controller = new BasketController(new ProductRepository(), basket);
         Offer offer = mock(Offer.class);
-        basket.add(offer);
-        assertThat(controller.getBasketOffers(), equalTo(Arrays.asList(offer)));
+        when(basket.getOffers()).thenReturn(Collections.singletonList(offer));
+        assertThat(controller.getBasketOffers(), equalTo(Collections.singletonList(offer)));
     }
 
     @Test
-    public void deveria_adicionar_na_basket_pelo_id_da_oferta() {
-        String productId = "2";
-        String offerId = "seller1-sku1";
-        Product product = mock(Product.class);
-        Offer offer = mock(Offer.class);
+    public void deveria_adicionar_oferta_na_basket() {
+        when(messenger.ask("Digite o produto:")).thenReturn("productId");
+        when(messenger.ask("Escolha a oferta:")).thenReturn("offerId");
+        when(repository.findOffersByProduct("productId")).thenReturn(Collections.emptyList());
+        when(repository.findAll()).thenReturn(Collections.emptyList());
+        controller.addOffer();
 
-        when(repository.findProduct(eq(productId))).thenReturn(Optional.of(product));
-        when(product.getOfferById(eq(offerId))).thenReturn(Optional.of(offer));
-        when(basket.add(eq(offer))).thenReturn(true);
+        verify(messenger).send(Collections.emptyList().toString());
+        verify(messenger).ask("Digite o produto:");
+        verify(messenger).send("Ofertas do produto:");
+        verify(messenger).send(Collections.emptyList().toString());
+        verify(messenger).ask("Escolha a oferta:");
 
-        assertThat(controller.addOfferById(productId, offerId), equalTo(true));
+
+
     }
 
     @Test
@@ -119,28 +124,34 @@ public class BasketControllerTest {
     }
 
     @Test
-    public void deveria_retornar_toString_da_basket_do_controller() {
-        when(basket.toString()).thenReturn("id=1 price=5.5\n");
-        assertThat(controller.basketToString(), equalTo(basket.toString()));
-    }
-
-    @Test
-    public void deveria_retornar_valor_total_da_basket_do_controller() {
-        when(basket.getTotalValue()).thenReturn(50.5);
-        assertThat(controller.getBasketTotalValue(), equalTo(basket.getTotalValue()));
-    }
-
-    @Test
     public void deveria_remover_oferta_da_basket_do_controller() {
-        controller.removeOfferById("seller1-sku1");
+        when(messenger.ask("Digite o id do item a ser removido:")).thenReturn("seller1-sku1");
+        controller.removeOffer();
 
         verify(basket).removeById("seller1-sku1");
+        verify(messenger).ask("Digite o id do item a ser removido:");
     }
 
     @Test
     public void deveria_retornar_string_com_produtos_do_repository() {
         when(repository.toString()).thenReturn("");
-        assertThat(controller.getRepositoryProductsToString(),equalTo(repository.toString()));
+        assertThat(controller.getRepositoryProductsToString(), equalTo(repository.toString()));
+    }
+
+    @Test
+    public void deveria_fechar_a_compra() {
+        when(basket.getTotalValue()).thenReturn(5.0);
+        controller.closeBasket();
+        verify(messenger).send("Fechar compra selecionado");
+        verify(messenger).send("Total do seu carrinho é:");
+        verify(messenger).send("5.0");
+    }
+
+    @Test
+    public void deveria_exibir_basket() {
+        when(basket.toString()).thenReturn("basket");
+        controller.showBasket();
+        verify(messenger).send("basket");
     }
 
 }

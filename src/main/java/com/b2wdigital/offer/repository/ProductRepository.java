@@ -34,4 +34,9 @@ public class ProductRepository {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 
+    public <T> T findOffersByProduct(String productId) {
+    }
+
+    public <T> T findAll() {
+    }
 }
