@@ -1,6 +1,7 @@
 package com.b2wdigital.offer;
 
 import com.b2wdigital.offer.controller.BasketController;
+import com.b2wdigital.offer.model.Basket;
 import com.b2wdigital.offer.service.Messenger;
 import org.junit.Test;
 
@@ -16,12 +17,13 @@ public class RunnerApplicationTest {
     public void deveria_fechar_o_programa() {
         BasketController controller = mock(BasketController.class);
         Messenger messenger = mock(Messenger.class);
+        Basket basket = mock(Basket.class);
 
         RunnerApplication runner = new RunnerApplication();
 
         when(messenger.ask(eq(""))).thenReturn("5");
 
-        runner.run(messenger, controller);
+        runner.run(messenger, controller, basket);
 
 
         verify(messenger, times(7)).send(anyString());

@@ -11,13 +11,13 @@ public class Basket {
 
     private List<Offer> offers = new ArrayList<>();
 
-
     @Override
     public String toString() {
         StringBuilder offerString = new StringBuilder();
         for (Offer offer : offers) {
             offerString.append("id=").append(offer.getId()).append(" ").append("price=").append(offer.getPrice()).append("\n");
         }
+
         return offerString.toString();
     }
 

@@ -1,6 +1,7 @@
 package com.b2wdigital.offer;
 
 import com.b2wdigital.offer.controller.BasketController;
+import com.b2wdigital.offer.model.Basket;
 import com.b2wdigital.offer.service.Messenger;
 
 /**
@@ -8,25 +9,25 @@ import com.b2wdigital.offer.service.Messenger;
  */
 public class RunnerApplication {
 
-    public void run(Messenger messenger, BasketController controller) {
+    public void run(Messenger messenger, BasketController controller, Basket basket) {
         String menu = printMenu(messenger);
 
         while (!menu.equals("5")) {
             switch (menu) {
                 case "1":
-                    controller.addOffer();
+                    controller.addOffer(basket);
                     break;
                 case "2":
-                    controller.showBasket();
-                    controller.removeOffer();
-                    controller.showBasket();
+                    controller.showBasket(basket);
+                    controller.removeOffer(basket);
+                    controller.showBasket(basket);
 
                     break;
                 case "3":
-                    controller.closeBasket();
+                    controller.closeBasket(basket);
                     break;
                 case "4":
-                    controller.showBasket();
+                    controller.showBasket(basket);
                     break;
 
             }

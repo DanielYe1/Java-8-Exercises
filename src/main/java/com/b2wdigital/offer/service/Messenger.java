@@ -23,7 +23,7 @@ public class Messenger {
         return receiver.receive();
     }
 
-    public void send(String message) {
-        sender.send(message);
+    public void send(Object object) {
+        sender.send(object);
     }
 }

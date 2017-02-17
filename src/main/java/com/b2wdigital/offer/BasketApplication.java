@@ -13,9 +13,9 @@ public class BasketApplication {
 
     public static void main(String[] args) {
         Messenger messenger = new Messenger(new Sender(), new Receiver());
-        BasketController controller = new BasketController(new ProductRepository(), new Basket(), messenger);
+        BasketController controller = new BasketController(new ProductRepository(), messenger);
         RunnerApplication runner = new RunnerApplication();
-        runner.run(messenger, controller);
+        runner.run(messenger, controller, new Basket());
     }
 
 }

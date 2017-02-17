@@ -11,7 +11,7 @@ public class ProductRepository {
     static {
         products = new ArrayList<>();
         products.add(new Product("1", "p1", Arrays.asList("a", "b"), Arrays.asList("c", "d"),
-                Collections.singletonList(new Offer(5.2, "seller1", "sku1", 5))));
+                Collections.singletonList(new Offer(5.2, "seller5", "sku5", 5))));
         products.add(new Product("2", "p2", Arrays.asList("a1", "b1"), Arrays.asList("c1", "d1"),
                 Arrays.asList(new Offer(22, "seller1", "sku1", 10), new Offer(10.2, "seller2", "sku2", 120),
                         new Offer(30, "seller3", "sku3", 105), new Offer(45, "seller4", "sku4", 102))));
@@ -34,9 +34,11 @@ public class ProductRepository {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 
-    public <T> T findOffersByProduct(String productId) {
+    public List<Offer> findOffersByProduct(String productId) {
+        return Collections.emptyList();
     }
 
-    public <T> T findAll() {
+    public List<Product> findAll() {
+        return Collections.unmodifiableList(products);
     }
 }
