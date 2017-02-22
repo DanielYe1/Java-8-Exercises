@@ -49,4 +49,12 @@ public class BasketTest {
         basket.add(new Offer(10.5, "seller2", "sku2", 4));
         assertThat(basket.getTotalValue(), equalTo(16.0));
     }
+
+    @Test
+    public void deveria_esvaziar_as_ofertas_do_carrinho(){
+        Basket basket = new Basket();
+        basket.add(new Offer(5.5, "seller1", "sku1", 5));
+        basket.cleanOffers();
+        assertThat(basket.getOffers(), empty());
+    }
 }

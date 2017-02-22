@@ -44,4 +44,8 @@ public class Basket {
     public double getTotalValue() {
         return offers.stream().map(Offer::getPrice).reduce(0.0, Double::sum);
     }
+
+    public void cleanOffers() {
+        offers = new ArrayList<>();
+    }
 }
