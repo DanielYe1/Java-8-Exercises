@@ -40,49 +40,21 @@ public class BasketController {
         mService.showBasketString(basket.toString());
     }
 
-/*    public void addOffer(Basket basket) {
-        BasketService service = new BasketService();
-        MessengerService mService =  new MessengerService();
-
-        String productId = mService.askForProduct();
-
-        if(productId != null){
-            Optional<Product> product = service.findProduct(productId);
-            if(product.isPresent()){
-                String offerId = mService.askForOffer();
-                Optional<Offer> offer = service.findOffer(product.get(), offerId);
-                if(offer.isPresent()){
-                    service.addOfferIntoBasket(basket, offer.get());
-                }else{
-                    mService.showNotFoundOffer();
-                }
-            } else{
-                mService.showNotFoundProduct();
-            }
-        }else{
-            mService.showInvalidProduct();
-        }
-
-        BasketControllerAdder adder = new BasketControllerAdder();
-        String productId = adder.askForProduct();
+    public void addOffer(Basket basket) {
+        String productId = mService.askForProduct(repository.findAll());
         Optional<Product> oProduct = repository.findProduct(productId);
-
-        oProduct.ifPresent(product -> {
-            String offerId = adder.askForOffer();
-            product.getOfferById(offerId).ifPresent(basket::add);
-        });
 
         if (oProduct.isPresent()) {
             Product product = oProduct.get();
-            Optional<Offer> offer = adder.askForOffer(product);
+            Optional<Offer> offer = product.getOfferById(mService.askForOffer());
             if (offer.isPresent()) {
                 basket.add(offer.get());
             } else {
                 mService.showNotFoundOffer();
             }
         } else {
-            messenger.send("Produto nao encontrado.");
+            mService.showNotFoundProduct();
         }
-    }*/
+    }
 
 }
