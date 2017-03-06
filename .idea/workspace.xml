@@ -1060,7 +1060,7 @@
       <workItem from="1488462688635" duration="6047000" />
       <workItem from="1488553130401" duration="261000" />
       <workItem from="1488572091374" duration="2306000" />
-      <workItem from="1488810014492" duration="241000" />
+      <workItem from="1488810014492" duration="292000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented BasketApplication features">
       <created>1487082297044</created>
@@ -1111,7 +1111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487872538975</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Removed caelum exercises">
+      <created>1488810298228</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1488810298228</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1147,7 +1154,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136174000" />
+    <option name="totallyTimeSpent" value="136225000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1242,7 +1249,8 @@
     <MESSAGE value="Change the BasketController features to RunnerApplication and Messenger divided between Receiver and Sender classes" />
     <MESSAGE value="Implemented service classes to encapsulation and coupling" />
     <MESSAGE value="Implemented addOffer method at BasketController class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented addOffer method at BasketController class" />
+    <MESSAGE value="Removed caelum exercises" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed caelum exercises" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
