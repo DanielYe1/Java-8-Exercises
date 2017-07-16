@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,intellij,eclipse,gradle,maven,jetbrains
+# Created by https://www.gitignore.io/api/gradle,eclipse,intellij
 
 ### Eclipse ###
 
@@ -15,9 +15,6 @@ local.properties
 .loadpath
 .recommenders
 
-# Eclipse Core
-.project
-
 # External tool builders
 .externalToolBuilders/
 
@@ -29,9 +26,6 @@ local.properties
 
 # CDT-specific (C/C++ Development Tooling)
 .cproject
-
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
 
 # Java annotation processor (APT)
 .factorypath
@@ -54,29 +48,45 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Eclipse Patch ###
+# Eclipse Core		
+.project
+
+# JDT-specific (Eclipse Java Development Tools)		
+.classpath
+
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/workspace.xml
-.idea/tasks.xml
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
 
 # Sensitive or high-churn files:
-.idea/dataSources/
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/dataSources.local.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
 
 # Gradle:
-.idea/gradle.xml
-.idea/libraries
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# CMake
+cmake-build-debug/
 
 # Mongo Explorer plugin:
-.idea/mongoSettings.xml
+.idea/**/mongoSettings.xml
 
 ## File-based project format:
 *.iws
@@ -88,9 +98,13 @@ local.properties
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+.idea
 
 # JIRA plugin
 atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -106,69 +120,8 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
-### Java ###
-*.class
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-### JetBrains ###
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-# User-specific stuff:
-
-# Sensitive or high-churn files:
-
-# Gradle:
-
-# Mongo Explorer plugin:
-
-## File-based project format:
-
-## Plugin-specific files:
-
-# IntelliJ
-
-# mpeltonen/sbt-idea plugin
-
-# JIRA plugin
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-
-### JetBrains Patch ###
-# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
-
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
-.idea
-
-### Maven ###
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-
-# Exclude maven wrapper
-!/.mvn/wrapper/maven-wrapper.jar
+# Sonarlint plugin
+.idea/sonarlint
 
 ### Gradle ###
 .gradle
@@ -186,5 +139,4 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-# End of https://www.gitignore.io/api/java,intellij,eclipse,gradle,maven,jetbrains
-
+# End of https://www.gitignore.io/api/gradle,eclipse,intellij
