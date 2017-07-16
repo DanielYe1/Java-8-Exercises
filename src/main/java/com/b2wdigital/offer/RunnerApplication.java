@@ -15,7 +15,7 @@ public class RunnerApplication {
         while (!menu.equals("5")) {
             switch (menu) {
                 case "1":
-              /*      controller.addOffer(basket);*/
+                    controller.addOffer(basket);
                     break;
                 case "2":
                     controller.showBasket(basket);
