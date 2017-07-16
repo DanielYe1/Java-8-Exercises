@@ -154,6 +154,7 @@ hs_err_pid*
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+.idea
 
 ### Maven ###
 target/
@@ -186,3 +187,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/java,intellij,eclipse,gradle,maven,jetbrains
+
