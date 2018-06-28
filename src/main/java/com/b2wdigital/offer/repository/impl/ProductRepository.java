@@ -1,11 +1,12 @@
-package com.b2wdigital.offer.repository;
+package com.b2wdigital.offer.repository.impl;
 
 import java.util.*;
 
 import com.b2wdigital.offer.model.Offer;
 import com.b2wdigital.offer.model.Product;
+import com.b2wdigital.offer.repository;
 
-public class ProductRepository {
+public class ProductRepository implements IRepository{
     private static List<Product> products;
 
     static {
@@ -30,14 +31,17 @@ public class ProductRepository {
         return productString.toString();
     }
 
+    @Override
     public Optional<Product> findProduct(String id) {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 
+    @Override
     public List<Offer> findOffersByProduct(String productId) {
         return Collections.emptyList();
     }
 
+    @Override
     public List<Product> findAll() {
         return Collections.unmodifiableList(products);
     }
