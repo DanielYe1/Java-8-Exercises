@@ -3,7 +3,7 @@ package com.b2wdigital.offer.controller;
 import com.b2wdigital.offer.model.Basket;
 import com.b2wdigital.offer.model.Offer;
 import com.b2wdigital.offer.model.Product;
-import com.b2wdigital.offer.repository.ProductRepository;
+import com.b2wdigital.offer.repository.impl.ProductRepository;
 import com.b2wdigital.offer.service.BasketService;
 import com.b2wdigital.offer.service.MessengerService;
 
